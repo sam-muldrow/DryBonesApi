@@ -7,6 +7,11 @@ import * as dotenv from "dotenv";
 dotenv.config(); 
 
 export const testRouter = express.Router();
+
+testRouter.get("/x", async (req: Request, res: Response) => {
+  res.status(200).send("Success");
+})
+
 testRouter.use(authHandler)
 
 testRouter.get("/:id", async (req: Request, res: Response) => {
