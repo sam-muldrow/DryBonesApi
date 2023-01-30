@@ -24,6 +24,7 @@ export async function getTestDataFromTestDatakey(testId: number, TestDataKey: st
         resolve(await firbaseConnector.getTestDataFromTestDatakey(testId, TestDataKey));
     });
 }
+
 export async function getLatestTestDataFromTestDatakey(testId: number, TestDataKey: string): Promise<TestDataEntry> {
     return new Promise<TestDataEntry>(async (resolve) => {
         resolve(await firbaseConnector.getLatestTestDataFromTestDatakey(testId, TestDataKey));
@@ -46,14 +47,6 @@ export async function getTestLogFromKey(testId: number, TestLogKey: string): Pro
     return new Promise<TestLog>(async (resolve) => {
         resolve(await firbaseConnector.getTestLogFromKey(testId, TestLogKey));
     });
-}
-
-function getSessionsFromTestId(testId: number): Session {
-
-}
-
-function getSessionFromTestIdAndSessionId(testId: number, sessionId: number) {
-    
 }
 
 // Creates a new test and returns the ID

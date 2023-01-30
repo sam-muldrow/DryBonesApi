@@ -8,9 +8,17 @@ dotenv.config();
 
 export const testRouter = express.Router();
 
+/*
+BEGIN UNAUTHORIZED ENDPOINTS
+*/
+
 testRouter.get("/x", async (req: Request, res: Response) => {
   res.status(200).send("Success");
 })
+
+/*
+END UNAUTHORIZED ENDPOINTS
+*/
 
 testRouter.use(authHandler)
 
