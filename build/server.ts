@@ -12,8 +12,6 @@ const port = 8080;
 // Allow us to access environment variables
 dotenv.config(); 
 
-
-
 export class server {
   constructor() {
     if (!process.env.PORT) {

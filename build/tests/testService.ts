@@ -19,6 +19,12 @@ export async function getTestFromId(testId: number): Promise<Test> {
     });
 }
 
+export async function getAllTests(): Promise<Tests> {
+    return new Promise<Tests>(async (resolve) => {
+        resolve(await firbaseConnector.getAllTests());
+    });
+}
+
 export async function getTestDataFromTestDatakey(testId: number, TestDataKey: string): Promise<TestData> {
     return new Promise<TestData>(async (resolve) => {
         resolve(await firbaseConnector.getTestDataFromTestDatakey(testId, TestDataKey));
@@ -50,26 +56,12 @@ export async function getTestLogFromKey(testId: number, TestLogKey: string): Pro
 }
 
 // Creates a new test and returns the ID
-export async function createNewTestId(): Promise<number> {
-    console.log("I'm in here") 
-    const testTestData: TestData = {
-        'test_test': 'somedata'
-    }
-    let testTestLog: TestLog = {
-        Logs: []
-    }
-    testTestLog.Logs.push({
-        eTest: "meta",
-        dateCreated: new Date(),
-        information: "ur mum"
-    })
+export async function createNewTestId(test: Test): Promise<number> {
     const testTest: Test = {
-        testName: "test",
-        testTarget: "ur mom",
+        testName: test.testName,
+        testTarget: test.testTarget,
         testCreated: new Date,
-        description: "a test test",
-        testData: testTestData,
-        testLog: testTestLog
+        description: test.description,
     }
     return new Promise<number>(async (resolve) => {
         resolve(await firbaseConnector.createNewTestId(testTest));

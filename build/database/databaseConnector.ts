@@ -2,10 +2,12 @@ import { getFirestore, doc, getDoc, collection, addDoc, getCountFromServer } fro
 import { initializeApp, App, AppOptions, getApps, getApp, cert } from "firebase-admin/app";
 import * as firebase from 'firebase-admin'
 import * as dotenv from "dotenv";
-import { Test, TestData, TestDataEntry, TestLog } from "../tests/testInterface";
+import { Test, TestData, TestDataEntry, TestLog, Tests } from "../tests/testInterface";
 import serviceAccount from "../../it-666-367215-firebase-adminsdk-tmncn-8ea4f7102e.json"
 import { application } from "express";
 import { rejects } from "assert";
+import { QuerySnapshot } from "@google-cloud/firestore";
+import { resolve } from "path";
 
 // Allow us to access environment variables
 dotenv.config(); 
@@ -36,9 +38,22 @@ export class firebaseDatabaseConnector {
         const docRef = await db.collection("test").doc(testIdString).get()
         if(docRef.exists) {
             return new Promise<Test>((resolve) => {
-                resolve(docRef.data())
+                resolve(docRef.data());
             })
         }
+    }
+
+    async getAllTests(): Promise<Tests> {
+        const querySnapshot = await db.collection("test").get();
+        console.log("Getting all tests");
+        let tests: Tests = {data: []};
+        querySnapshot.forEach((doc) => {
+            tests.data.push(doc.data());
+        })
+        console.log(tests)
+        return new Promise<Tests>((resolve) => {
+            resolve(tests);
+        })
     }
     
     async getTestDataFromTestId(testId: number): TestData {

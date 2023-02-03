@@ -13,7 +13,6 @@ import { testRouter } from "./tests/testRouter";
 import { notFoundHandler } from "./middleware/notFoundMiddleware";
 import { errorHandler } from "./middleware/errorMiddleware";
 
-
 // class to represent a whole express server
 export class expressServerRunner {
     port: number

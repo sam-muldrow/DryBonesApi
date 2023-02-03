@@ -22,6 +22,19 @@ END UNAUTHORIZED ENDPOINTS
 
 testRouter.use(authHandler)
 
+testRouter.get("/all", async (req: Request, res: Response) => {
+  try{
+    const tests: Tests = await TestService.getAllTests();
+    console.log(tests);
+    if (tests) {
+      return res.status(200).json(tests);
+    }
+  } catch (e) {
+    console.log(e.message);
+    res.sendStatus(500).send("ISE");
+  }
+});
+
 testRouter.get("/:id", async (req: Request, res: Response) => {
     const id: number = parseInt(req.params.id, 10);
   
@@ -36,7 +49,7 @@ testRouter.get("/:id", async (req: Request, res: Response) => {
       console.log(e.message);
       res.sendStatus(500).send("ISE");
     }
-  });
+});
 
   testRouter.get("/:id/data", async (req: Request, res: Response) => {
     const id: number = parseInt(req.params.id, 10);
@@ -157,9 +170,12 @@ testRouter.post("/:id/log", async (req: Request, res: Response) => {
   }
 });
 
+
 testRouter.post("/", async (req: Request, res: Response) => {
   try {
-    const ret: number = await TestService.createNewTestId();  
+
+    let test: Test = req.body;  
+    const ret: number = await TestService.createNewTestId(test);
     console.log(ret);
     if(ret) {
       res.json({'testId': ret});

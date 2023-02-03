@@ -6,8 +6,6 @@ export interface Test {
     testTarget: string
     testCreated: Date;
     description: string;
-    testData: TestData;
-    testLog: TestLog;
 }
   
 export interface TestId extends Test {
@@ -15,7 +13,7 @@ export interface TestId extends Test {
 }
 
 export interface Tests {
-  [key: number]: TestId
+  data: Test[]
 }
 
 export interface Sessions {
