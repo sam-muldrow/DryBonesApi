@@ -44,7 +44,7 @@ export class firebaseDatabaseConnector {
     }
 
     async getAllTests(): Promise<Tests> {
-        const querySnapshot = await db.collection("test").get();
+        const querySnapshot = await db.collection("test").orderBy("id", "desc").get();
         console.log("Getting all tests");
         let tests: Tests = {data: []};
         querySnapshot.forEach((doc) => {
