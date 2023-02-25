@@ -143,7 +143,7 @@ testRouter.get("/:id", async (req: Request, res: Response) => {
       const bodyObject = req.body;
       console.log("received request with body:", bodyObject)
       if (bodyObject) {
-        const testDataId: Number = await TestService.AddOrEditTestData(id, bodyObject.key, bodyObject.value);  
+        const testDataId: Number = await TestService.AddOrEditTestData(id, bodyObject.key, bodyObject.value, bodyObject.relatedTo);  
         return res.status(200).json(testDataId);
       }
       res.sendStatus(404).send("No body no worky");

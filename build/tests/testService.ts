@@ -68,9 +68,9 @@ export async function createNewTestId(test: Test): Promise<number> {
     });
 }
 
-export async function AddOrEditTestData(testId: number, key: string, value: string): Promise<Number> {
+export async function AddOrEditTestData(testId: number, key: string, value: string, relatedTo: string): Promise<Number> {
     return new Promise<Number>(async (resolve) => {
-        resolve(await firbaseConnector.AddOrEditTestData(testId, key, value));
+        resolve(await firbaseConnector.AddOrEditTestData(testId, key, value, relatedTo));
     });
 }
 

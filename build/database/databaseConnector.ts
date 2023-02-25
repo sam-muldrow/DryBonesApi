@@ -68,7 +68,7 @@ export class firebaseDatabaseConnector {
                 testData.data.push(doc.data());
             }) 
             return new Promise<TestData>((resolve) => {
-                resolve(testData) 
+                resolve(testData); 
             })
         }
     }
@@ -183,7 +183,7 @@ export class firebaseDatabaseConnector {
           }
     }
     
-    async AddOrEditTestData(testId: number, key: string, value: string): Promise<Number> {
+    async AddOrEditTestData(testId: number, key: string, value: string, relatedTo: string): Promise<Number> {
         try {
             const docCount: number = await this.getDocumentCount("testData");
             const testDataId: number = docCount + 1;
@@ -192,6 +192,7 @@ export class firebaseDatabaseConnector {
             const docRef = await db.collection("testData").doc(key).set ({
               id: testId,
               key: key,
+              relatedTo: relatedTo,
               data: value,
               timeStamp: Date.now(),
             }, {merge: true});
