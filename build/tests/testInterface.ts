@@ -29,7 +29,7 @@ export interface Session {
 }
 
 export interface TestData {
- data: TestDataEntry[]
+ data: TestDataEntry[];
 }
 
 export interface TestDataEntry {

@@ -189,7 +189,7 @@ export class firebaseDatabaseConnector {
             const testDataId: number = docCount + 1;
             const testDataIdString: string = ""+testDataId
             console.log(testDataIdString)
-            const docRef = await db.collection("testData").doc(testDataIdString).set ({
+            const docRef = await db.collection("testData").doc(key).set ({
               id: testId,
               key: key,
               data: value,
