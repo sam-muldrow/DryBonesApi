@@ -2,22 +2,22 @@
 // == Defines data structures to be used for DB
 
 export interface Test {
-    testName: string;
-    testTarget: string
-    testCreated: Date;
-    description: string;
+  testName: string;
+  testTarget: string;
+  testCreated: Date;
+  description: string;
 }
-  
+
 export interface TestId extends Test {
-    id: number;
+  id: number;
 }
 
 export interface Tests {
-  data: Test[]
+  data: Test[];
 }
 
 export interface Sessions {
-  [index: number]: Session
+  [index: number]: Session;
 }
 
 export interface Session {
@@ -29,18 +29,18 @@ export interface Session {
 }
 
 export interface TestData {
- data: TestDataEntry[];
+  data: TestDataEntry[];
 }
 
 export interface TestDataEntry {
-  id: string,
-  key: string,
-  data: string,
-  timeStamp: Date,
+  id: string;
+  key: string;
+  data: string;
+  timeStamp: Date;
 }
 
 export interface TestLog {
-  Logs: TestLogEntry[]
+  Logs: TestLogEntry[];
 }
 
 export interface TestLogEntry {
